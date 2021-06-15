@@ -30,8 +30,12 @@ echo "plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump)" >>.zsh
 
 # install some useful applications
 echo '\033[33:41m' Install Applications............. '\033[0m'
-brew install git tldr autojump the_silver_searcher fd fzf nvim zsh tmux
+brew install git tldr autojump the_silver_searcher fd fzf nvim zsh tmux tree
 
+
+if [[ $SYSTEM == "Linux" ]]; then
+  sudo apt install  silversearcher-ag
+fi
 # tmux Configurature https://github.com/gpakosz/.tmux
 echo '\033[33:41m' Install tmux............. '\033[0m'
 
