@@ -1,10 +1,26 @@
 #!/bin/sh
 
-set -x
+#set -x
 
 # install brew
 echo '\033[33:41m' Install brew............. '\033[0m'
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+SYSTEM=`uname -s`
+if [[ $SYSTEM == "Darwin" ]]; then
+  echo '\033[32:41m' .............Congra, the machine is MAC '\033[0m'
+elif [[ $SYSTEM == "Linux" ]]; then
+  echo '\033[32:41m' .............opz, the machine is Linux '\033[0m'
+else 
+  echo '\033[32:41m' .............Maybe It dosen\'t work in $(SYSTEM)'\033[0m'
+fi
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [[ $SYSTEM == "Linux" ]]; then
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/hujunjie.ove/.zprofile
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 
 # install ozh
 echo '\033[33:41m' Install ozh............. '\033[0m'
@@ -14,7 +30,7 @@ echo "plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump)" >>.zsh
 
 # install some useful applications
 echo '\033[33:41m' Install Applications............. '\033[0m'
-brew install git tldr autojump the_silver_searcher fd fzf nvim tmux
+brew install git tldr autojump the_silver_searcher fd fzf nvim zsh tmux
 
 # tmux Configurature https://github.com/gpakosz/.tmux
 echo '\033[33:41m' Install tmux............. '\033[0m'
