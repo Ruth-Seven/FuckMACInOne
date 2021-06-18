@@ -11,6 +11,10 @@ if [[ $SYSTEM == "Darwin" ]]; then
   echo '\033[32:41m' .............Congra, the machine is MAC '\033[0m'
 elif [[ $SYSTEM == "Linux" ]]; then
   echo '\033[32:41m' .............opz, the machine is Linux '\033[0m'
+  test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+  test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+  test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+  echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 else 
   echo '\033[32:41m' .............Maybe It dosen\'t work in $(SYSTEM)'\033[0m'
 fi
@@ -19,7 +23,8 @@ fi
 if [[ $SYSTEM == "Linux" ]]; then
   echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/hujunjie.ove/.zprofile
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+f
+i
 
 # install python and go
 
