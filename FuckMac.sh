@@ -21,28 +21,35 @@ if [[ $SYSTEM == "Linux" ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+# install python and go
 
+echo '\033[33:41m' Install python and go............. '\033[0m'
+brew install python go
 # install ozh
 echo '\033[33:41m' Install ozh............. '\033[0m'
 uninstall_oh_my_zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-echo "plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump)" >>.zshrc
+echo "plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump)" >> ~/.zshrc
 
 # install some useful applications
 echo '\033[33:41m' Install Applications............. '\033[0m'
 brew install git tldr autojump the_silver_searcher fd fzf nvim zsh tmux tree
-
+brew install bat
 
 if [[ $SYSTEM == "Linux" ]]; then
   sudo apt install  silversearcher-ag
+  git clone git://github.com/wting/autojump.git
+  echo "[[ -s /home/hujunjie.ove/.autojump/etc/profile.d/autojump.sh ]] && source /home/hujunjie.ove/.autojump/etc/profile.d/autojump.sh " >> ~/.zshrc
+  rm autojump -rfd
 fi
+
 # tmux Configurature https://github.com/gpakosz/.tmux
 echo '\033[33:41m' Install tmux............. '\033[0m'
 
-git clone https://github.com/gpakosz/.tmux.git ./oh-my-tmux
-echo "set-option -g default-shell /bin/zsh" >>./oh-my-tmux/.tmux.conf
-ln -s -f ./oh-my-tmux/.tmux.conf ~/.tmux.conf
-cp ./oh-my-tmux/.tmux.conf.local ~/.tmux.conf.local
+git clone https://github.com/gpakosz/.tmux.git ~/oh-my-tmux
+echo "set-option -g default-shell /bin/zsh" >> ~/oh-my-tmux/.tmux.conf
+ln -s -f ~/oh-my-tmux/.tmux.conf ~/.tmux.conf
+cp ~/oh-my-tmux/.tmux.conf.local ~/.tmux.conf.local
 
 # Vim configurature
 ## bundle
@@ -66,5 +73,9 @@ python3 install.py --all
 
 ## navigator https://github.com/christoomey/vim-tmux-navigator
 vim +PluginInstall +qall
+
+# 
+echo '\033[33:41m' Export Path............ '\033[0m'
+echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.zshrc
 
 echo '\033[33:41m' Done! '\033[0m'
