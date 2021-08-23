@@ -29,7 +29,7 @@ i
 # install python and go
 
 echo '\033[33:41m' Install python and go............. '\033[0m'
-brew install python go
+brew install conda python go
 # install ozh
 echo '\033[33:41m' Install ozh............. '\033[0m'
 uninstall_oh_my_zsh
@@ -40,6 +40,11 @@ echo "plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump)" >> ~/.
 echo '\033[33:41m' Install Applications............. '\033[0m'
 brew install git tldr autojump the_silver_searcher fd fzf nvim zsh tmux tree
 brew install bat
+
+# Trash-cli https://github.com/andreafrancia/trash-cli/
+pip install trash-cli
+echo 'export PATH="$PATH":~/.local/bin' >> ~/.zshrc
+source ~/.bashrc # reload .bashr
 
 if [[ $SYSTEM == "Linux" ]]; then
   sudo apt install  silversearcher-ag
